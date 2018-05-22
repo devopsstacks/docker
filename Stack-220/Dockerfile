@@ -11,11 +11,8 @@ COPY ["installpm.sh", "/tmp/"]
 COPY ["servicespm.sh", "/usr/bin/"]
 RUN  chmod 700 /tmp/installpm.sh && \
      chmod 700 /usr/bin/servicespm.sh && \
-     /bin/sh /tmp/installpm.sh      
-COPY ["php-fpm.conf", "/etc/php-fpm.d/processmaker.conf"]
-COPY ["nginx.conf", "/etc/nginx/nginx.conf"]
-COPY ["processmaker.conf", "/etc/nginx/conf.d/processmaker.conf"]
-
+     /bin/sh /tmp/installpm.sh
+     
 # Docker entrypoint
 EXPOSE 80 443
 ENTRYPOINT ["/usr/bin/servicespm.sh"]

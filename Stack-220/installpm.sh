@@ -9,8 +9,8 @@
   cp -f ~/hosts.new /etc/hosts ;
 
 ##### install Apache #####
-
-  yum -y install httpd24 ;
+  yum -y remove httpd* ;
+  yum -y install httpd24 php56;
   yum -y install php56-fpm  php56-gd php56-mysqlnd php56-soap php56-mbstring php56-ldap php56-mcrypt php56-xml php56-opcache ;
 
 
@@ -27,6 +27,7 @@
   sed -i 's@#LoadModule deflate_module modules/mod_deflate.so@LoadModule deflate_module modules/mod_deflate.so@' /etc/httpd/conf/httpd.conf ;
   sed -i 's@#LoadModule vhost_alias_module modules/mod_vhost_alias.so@LoadModule vhost_alias_module modules/mod_vhost_alias.so@' /etc/httpd/conf/httpd.conf ;
   sed -i 's@#LoadModule filter_module modules/mod_filter.so@LoadModule filter_module modules/mod_filter.so@' /etc/httpd/conf/httpd.conf ;
+  echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf ;
 
 ##### clean #####
   yum clean packages ;

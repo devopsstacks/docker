@@ -1,11 +1,12 @@
 #!/bin/bash
+set -e ;
+
 cp /etc/hosts ~/hosts.new ;
 sed -i "/127.0.0.1/c\127.0.0.1 localhost localhost.localdomain `hostname`" ~/hosts.new ;
 cp -f ~/hosts.new /etc/hosts ;
 
 service sendmail start ;
 service php-fpm start ;
-service nginx start;
 
 if [ -d /opt/processmaker/ ];
 then
@@ -28,7 +29,7 @@ else
         chown -R nginx:nginx /opt/processmaker ;
         rm -rf /tmp/processmaker* ;
 
-        if [ -d /opt/processmaker/gulliver/thirdparty/html2ps_pdf/cache ];
+        if [ -d /opt/processmaker/gulliver/thirdparty/html2ps_pdf/cache/ ];
         then
             chmod -R 770 /opt/processmaker/gulliver/thirdparty/html2ps_pdf/cache ;
         else
@@ -49,4 +50,4 @@ echo "
        ░░░░░░░         For more information see https://www.processmaker.com
                                                 http://wiki.processmaker.com/3.2/Supported_Stacks
 	 " ; 
-/bin/bash ;
+nginx -g 'daemon off;' ;
