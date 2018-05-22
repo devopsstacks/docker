@@ -4,8 +4,7 @@ FROM amazonlinux:2017.09
 # Maintainer
 MAINTAINER Team DevOps "devops@processmaker.com"
 
-LABEL processmaker-version = "3.2.2" \
-      processmaker-stack="220"
+LABEL processmaker-stack="220"
 
 # Install processmaker 
 COPY ["installpm.sh", "/tmp/"]

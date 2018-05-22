@@ -8,25 +8,25 @@
   sed -i "/127.0.0.1/c\127.0.0.1 localhost localhost.localdomain `hostname`" ~/hosts.new ;
   cp -f ~/hosts.new /etc/hosts ;
 
-##### install nginx #####
+##### install Apache #####
 
-  yum -y install nginx ;
+  yum -y install httpd24 ;
   yum -y install php56-fpm  php56-gd php56-mysqlnd php56-soap php56-mbstring php56-ldap php56-mcrypt php56-xml php56-opcache ;
 
 
-## configure php.ini ##
+##### configure php.ini #####
   sed -i '/short_open_tag = Off/c\short_open_tag = On' /etc/php.ini ;
   sed -i '/post_max_size = 8M/c\post_max_size = 24M' /etc/php.ini ;
   sed -i '/upload_max_filesize = 2M/c\upload_max_filesize = 24M' /etc/php.ini ;
   sed -i '/;date.timezone =/c\date.timezone = America/New_York' /etc/php.ini ;
   sed -i '/expose_php = On/c\expose_php = Off' /etc/php.ini ;
 
-## install opcache ##
-  sed -i '/opcache.max_accelerated_files=4000/c\opcache.max_accelerated_files=10000' /etc/php.d/10-opcache.ini ;
-  sed -i '/;opcache.max_wasted_percentage=5/c\opcache.max_wasted_percentage=5' /etc/php.d/10-opcache.ini ;
-  sed -i '/;opcache.use_cwd=1/c\opcache.use_cwd=1' /etc/php.d/10-opcache.ini ;
-  sed -i '/;opcache.validate_timestamps=1/c\opcache.validate_timestamps=1' /etc/php.d/10-opcache.ini ;
-  sed -i '/;opcache.fast_shutdown=0/c\opcache.fast_shutdown=1' /etc/php.d/10-opcache.ini ;
+##### configura Apache #####
+  sed -i 's@#LoadModule expires_module modules/mod_expires.so@LoadModule expires_module modules/mod_expires.so@' /etc/httpd/conf/httpd.conf ;
+  sed -i 's@#LoadModule rewrite_module modules/mod_rewrite.so@LoadModule rewrite_module modules/mod_rewrite.so@' /etc/httpd/conf/httpd.conf ;
+  sed -i 's@#LoadModule deflate_module modules/mod_deflate.so@LoadModule deflate_module modules/mod_deflate.so@' /etc/httpd/conf/httpd.conf ;
+  sed -i 's@#LoadModule vhost_alias_module modules/mod_vhost_alias.so@LoadModule vhost_alias_module modules/mod_vhost_alias.so@' /etc/httpd/conf/httpd.conf ;
+  sed -i 's@#LoadModule filter_module modules/mod_filter.so@LoadModule filter_module modules/mod_filter.so@' /etc/httpd/conf/httpd.conf ;
 
 ##### clean #####
   yum clean packages ;

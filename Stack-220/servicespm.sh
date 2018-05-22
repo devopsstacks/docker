@@ -22,8 +22,19 @@ else
         chmod -R 770 shared workflow/public_html gulliver/js thirdparty/html2ps_pdf/cache gulliver/thirdparty/html2ps_pdf/cache ;
         cd /opt/processmaker/workflow/engine/ ;
         chmod -R 770 config content/languages plugins xmlform js/labels ;
-        chown -R nginx:nginx /opt/processmaker ;
+        chown -R apache:apache /opt/processmaker ;
         rm -rf /tmp/processmaker* ;
+
+        if [ -d /opt/processmaker/gulliver/thirdparty/html2ps_pdf/cache ];
+        then
+            chmod -R 770 /opt/processmaker/gulliver/thirdparty/html2ps_pdf/cache ;
+        else
+            chmod -R 770 /opt/processmaker/thirdparty/html2ps_pdf/cache ;
+        fi
+    ##### configure pmos.conf #####
+        cp /opt/processmaker/pmos.conf.example /etc/httpd/conf.d/pmos.conf ;
+        sed -i 's@DocumentRoot /example/path/to/processmaker/workflow/public_html@DocumentRoot /opt/processmaker/workflow/public_html@' /etc/httpd/conf.d/pmos.conf ;
+        sed -i 's@<Directory /example/path/to/processmaker/workflow/public_html>@<Directory /opt/processmaker/workflow/public_html>@' /etc/httpd/conf.d/pmos.conf ;
     fi
 fi
 

@@ -40,7 +40,7 @@ fi
 echo "
        ░░░░░░░
     ░░░░░░░░░░░░░
-   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK 220 -> ( amazonlinux:2017.09 ; APACHE-2.4 ; PHP-5.6 )
+   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK 220 -> ( amazonlinux:2017.09 ; NGINX-1.12 ; PHP-5.6 )
   ░░░░  ░░░░░   ░░░
   ░░░  ░░░░░░░  ░░░░   - This stack of ProcessMaker use MySql 5.6
   ░░░  ░░░░░░   ░░░    - The following command run mysql56 in Docker:
