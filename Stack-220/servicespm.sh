@@ -4,8 +4,7 @@ sed -i "/127.0.0.1/c\127.0.0.1 localhost localhost.localdomain `hostname`" ~/hos
 cp -f ~/hosts.new /etc/hosts ;
 
 service sendmail start ;
-service php-fpm start ;
-service nginx start;
+service httpd start;
 
 if [ -d /opt/processmaker/ ];
 then
