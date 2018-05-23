@@ -13,7 +13,7 @@ services:
   processmaker:
     depends_on:
       - mysql
-    image: stack-n220:latest
+    image: devopsstacks/pm:n220
     ports:
       - 80:80
       - 443:443
