@@ -10,13 +10,13 @@ service php-fpm start ;
 
 if [ -d /opt/processmaker/ ];
 then
-    echo "ProccessMaker installed";
+    echo "ProccessMaker is already installed";
 else
     if [[ -z "${PM_URL}" ]];
     then
-        echo "ProccessMaker isn't installed";
+        echo "ProccessMaker is not installed";
         mkdir -p /opt/processmaker/workflow/public_html/ ;
-        echo "ProccessMaker isn't installed" > /opt/processmaker/workflow/public_html/app.php ;
+        echo "ProccessMaker is not installed" > /opt/processmaker/workflow/public_html/app.php ;
         
     else
     ##### install processmaker #####
@@ -43,8 +43,8 @@ echo "
     ░░░░░░░░░░░░░
    ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK 220 -> ( amazonlinux:2017.09 ; NGINX-1.12 ; PHP-5.6 )
   ░░░░  ░░░░░   ░░░
-  ░░░  ░░░░░░░  ░░░░   - This stack of ProcessMaker use MySql 5.6
-  ░░░  ░░░░░░   ░░░    - The following command run mysql56 in Docker:
+  ░░░  ░░░░░░░  ░░░░   - This ProcessMaker Stack uses MySql 5.6
+  ░░░  ░░░░░░   ░░░    - The following command runs mysql56 in Docker:
    ░░  ░░     ░░░░     -> docker run --name pm-db56 -e MYSQL_ROOT_PASSWORD=PM-Testdb -p 3306:3306 -d mysql:5.6
     ░  ░░░░░░░░░       
        ░░░░░░░         For more information see https://www.processmaker.com
