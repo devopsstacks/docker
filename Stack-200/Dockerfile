@@ -9,6 +9,7 @@ LABEL processmaker-stack="200"
 # Install processmaker 
 COPY ["installpm.sh", "/tmp/"]
 COPY ["servicespm.sh", "/usr/bin/"]
+COPY ["pmos.conf", "/etc/httpd/conf.d/"]
 RUN  chmod 700 /tmp/installpm.sh && \
      chmod 700 /usr/bin/servicespm.sh && \
      /bin/sh /tmp/installpm.sh

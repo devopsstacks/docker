@@ -21,10 +21,6 @@ else
         cd /tmp/ && wget ${PM_URL} ;
         tar -C /opt -xzvf processmaker* ;
         
-        cp /opt/processmaker/pmos.conf.example /etc/httpd/conf.d/pmos.conf ;
-        sed -i 's@DocumentRoot /example/path/to/processmaker/workflow/public_html@DocumentRoot /opt/processmaker/workflow/public_html@' /etc/httpd/conf.d/pmos.conf ;
-        sed -i 's@<Directory /example/path/to/processmaker/workflow/public_html>@<Directory /opt/processmaker/workflow/public_html>@' /etc/httpd/conf.d/pmos.conf ;
-
         cd /opt/processmaker/ ;
         chmod -R 770 shared workflow/public_html gulliver/js ;
         cd /opt/processmaker/workflow/engine/ ;
