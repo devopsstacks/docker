@@ -2,7 +2,7 @@
 FROM amazonlinux:2017.09
 
 # Maintainer
-MAINTAINER Team DevOps "devops@processmaker.com"
+LABEL maintainer="devops@processmaker.com"
 
 LABEL processmaker-stack="220"
 
