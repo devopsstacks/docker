@@ -47,7 +47,7 @@ echo "
    ░░  ░░     ░░░░     -> docker run --name pm-db55 -e MYSQL_ROOT_PASSWORD=PM-Testdb -p 3306:3306 -d mysql:5.5
     ░  ░░░░░░░░░       
        ░░░░░░░         For more information see https://www.processmaker.com
-                                                http://wiki.processmaker.com/3.2/Supported_Stacks
+                                                http://wiki.processmaker.com/3.1/Supported_Stacks
 	 " ; 
 rm -f /usr/local/apache2/logs/httpd.pid ;
 

@@ -14,12 +14,17 @@ then
 else
     if [[ -z "${PM_URL}" ]];
     then
-        echo "ProccessMaker is not installed";
-        mkdir -p /opt/processmaker/workflow/public_html/ ;
-        echo "ProccessMaker is not installed" > /opt/processmaker/workflow/public_html/app.php ;
+        ##### install processmaker 3.2.2 #####
+        cd /tmp/ && wget https://artifacts.processmaker.net/official/processmaker-3.2.2+001.tar.gz ;
+        tar -C /opt -xzvf processmaker-3.2.2+001.tar.gz ;
+        cd /opt/processmaker/ ;
+        chmod -R 770 shared workflow/public_html gulliver/js thirdparty/html2ps_pdf/cache ;
+        cd /opt/processmaker/workflow/engine/ ;
+        chmod -R 770 config content/languages plugins xmlform js/labels ;
+        chown -R nginx:nginx /opt/processmaker ;
         
     else
-    ##### install processmaker #####
+    ##### install processmaker with PM_URL#####
         cd /tmp/ && wget ${PM_URL} ;
         tar -C /opt -xzvf processmaker* ;
         cd /opt/processmaker/ ;
