@@ -38,6 +38,7 @@
   chown -R nginx:nginx /opt/processmaker ;
 
 ##### clean #####
+  rm -rf /tmp/processmaker-3.2.2+001.tar.gz ;
   yum clean packages ;
   yum clean headers ;
   yum clean metadata ;

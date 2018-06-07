@@ -7,21 +7,36 @@ cp -f ~/hosts.new /etc/hosts ;
 
 service sendmail start ;
 
-if [ -d /opt/processmaker/ ];
+if [ -d /opt/processmaker/workflow/engine ];
 then
-    echo "ProccessMaker is already installed";
+    echo "ProccessMaker is already installed" ;
 else
     if [[ -z "${PM_URL}" ]];
     then
         echo "ProccessMaker is not installed";
         mkdir -p /opt/processmaker/workflow/public_html/ ;
-        echo "ProccessMaker is not installed" > /var/www/noindex/index.html;
+        echo '<H1 align="center" align="bottom"><font color="2E9AFE" style="font-size:2vw;">ProccessMaker is not installed </font></H1>' > /opt/processmaker/workflow/public_html/index.php ;
+        echo '<H1 align="center" align="bottom"><font color="2E9AFE" style="font-size:2vw;">ProccessMaker is not installed </font></H1>' > /opt/processmaker/workflow/public_html/app.php ;
+        service httpd start ;
     else
+        mkdir -p /opt/processmaker/workflow/public_html/ ;
+        cp /tmp/app.php /opt/processmaker/workflow/public_html/ ;
+        cp /tmp/app.php /opt/processmaker/workflow/public_html/index.php ;
+        service httpd start ;
+
     ##### install processmaker #####
         cd /tmp/ && wget ${PM_URL} ;
-        tar -C /opt -xzvf processmaker* ;
         
+        if grep -qs '/opt' /proc/mounts ; 
+        then
+            sed -i 's@<script>setTimeout("document.location.reload()", 10000); </script>@<script>setTimeout("document.location.reload()", 270000); </script>@' /opt/processmaker/workflow/public_html/index.php ;
+            sed -i 's@<script>setTimeout("document.location.reload()", 10000); </script>@<script>setTimeout("document.location.reload()", 270000); </script>@' /opt/processmaker/workflow/public_html/app.php ;
+        else
+            sed -i 's@<script>setTimeout("document.location.reload()", 10000); </script>@<script>setTimeout("document.location.reload()", 30000); </script>@' /opt/processmaker/workflow/public_html/index.php ;
+            sed -i 's@<script>setTimeout("document.location.reload()", 10000); </script>@<script>setTimeout("document.location.reload()", 30000); </script>@' /opt/processmaker/workflow/public_html/app.php ;
+        fi
 
+        tar -C /opt -xzvf processmaker* ;     
         cd /opt/processmaker/ ;
         chmod -R 770 shared workflow/public_html gulliver/js ;
         cd /opt/processmaker/workflow/engine/ ;
@@ -36,8 +51,9 @@ else
             chmod -R 770 /opt/processmaker/thirdparty/html2ps_pdf/cache ;
         fi
     fi
+    sleep 5 ;
+    service httpd stop ;
 fi
-
 echo "
        ░░░░░░░
     ░░░░░░░░░░░░░
