@@ -8,11 +8,11 @@
   sed -i "/127.0.0.1/c\127.0.0.1 localhost localhost.localdomain `hostname`" ~/hosts.new ;
   cp -f ~/hosts.new /etc/hosts ;
 
-##### install Apache #####
+##### install Apache & php & mysql-client#####
   yum -y remove httpd* ;
   yum -y install httpd24 php56;
   yum -y install php56-fpm  php56-gd php56-mysqlnd php56-soap php56-mbstring php56-ldap php56-mcrypt php56-xml php56-opcache ;
-
+  yum -y install mysql55 ;
 
 ##### configure php.ini #####
   sed -i '/short_open_tag = Off/c\short_open_tag = On' /etc/php.ini ;
@@ -20,6 +20,7 @@
   sed -i '/upload_max_filesize = 2M/c\upload_max_filesize = 24M' /etc/php.ini ;
   sed -i '/;date.timezone =/c\date.timezone = America/New_York' /etc/php.ini ;
   sed -i '/expose_php = On/c\expose_php = Off' /etc/php.ini ;
+  sed -i '/memory_limit = 128M/c\memory_limit = 512M' /etc/php.ini ;
 
 ##### configura Apache #####
   sed -i 's@#LoadModule expires_module modules/mod_expires.so@LoadModule expires_module modules/mod_expires.so@' /etc/httpd/conf/httpd.conf ;
