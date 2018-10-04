@@ -6,15 +6,19 @@ sed -i "/127.0.0.1/c\127.0.0.1 localhost localhost.localdomain `hostname`" ~/hos
 cp -f ~/hosts.new /etc/hosts ;
 
 service sendmail start ;
-service php-fpm start ;
 
-/bin/sh /tmp/pmoptional.sh ;
+if [ -d /opt/processmaker/workflow/engine ];
+then
+    echo "ProccessMaker is already installed" ;
+else
+    /bin/sh /tmp/pmoptional.sh ;
+fi
 /bin/sh /tmp/integrations.sh ;
 
 echo "
        ░░░░░░░
     ░░░░░░░░░░░░░
-   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK N220 -> ( amazonlinux:2017.09 ; NGINX-1.12 ; PHP-5.6 )
+   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK 225 -> ( amazonlinux:2017.09 ; APACHE-2.4 ; PHP-7.1 )
   ░░░░  ░░░░░   ░░░
   ░░░  ░░░░░░░  ░░░░   - This ProcessMaker Stack uses MySql 5.6
   ░░░  ░░░░░░   ░░░    - The following command runs mysql56 in Docker:
@@ -22,8 +26,7 @@ echo "
     ░  ░░░░░░░░░       
        ░░░░░░░         For more information see https://www.processmaker.com
                                                 http://wiki.processmaker.com/3.2/Supported_Stacks
-	 " ;
-sleep 3 ;
-service php-fpm restart ;
-service nginx stop ;
-nginx -g 'daemon off;' ;
+	 " ; 
+rm -f /usr/local/apache2/logs/httpd.pid ;
+
+httpd -DFOREGROUND ;

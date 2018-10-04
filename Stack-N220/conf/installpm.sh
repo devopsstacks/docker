@@ -9,8 +9,9 @@
   cp -f ~/hosts.new /etc/hosts ;
 
 ##### install nginx & php & mysql-client#####
-
-  yum -y install nginx;
+  
+  yum -y remove httpd* ;
+  yum -y install nginx ;
   yum -y install php56-fpm  php56-gd php56-mysqlnd php56-soap php56-mbstring php56-ldap php56-mcrypt php56-xml php56-opcache ;
   yum -y install mysql56 ;
 

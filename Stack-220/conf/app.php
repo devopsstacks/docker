@@ -35,7 +35,14 @@
 		<p align="center"><font color="white">For more information, see <a style="color: #2E9AFE;" href="https://www.processmaker.com">https://www.processmaker.com</a></p>
 	</div>
 
-<script>setTimeout("document.location.reload()", 10000); </script>
+<script>
+function miFuncion()
+{
+    window.location.reload();
+}
+setInterval("miFuncion()",180000);
+
+</script>
 
 </body>
 </html>

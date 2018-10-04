@@ -10,7 +10,8 @@
 
 ##### install nginx & php & mysql-client #####
 
-  yum -y install nginx;
+  yum -y remove httpd* ;
+  yum -y install nginx ;
   yum -y install php71-fpm  php71-gd php71-mysqlnd php71-soap php71-mbstring php71-ldap php71-mcrypt php71-xml php71-opcache ;
   yum -y install mysql56 ;
 

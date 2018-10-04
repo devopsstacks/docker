@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##### install tools #####
-  yum clean all && yum update -y && yum install epel-release mod_ssl sendmail wget -y  ;
+  yum clean all && yum update -y && yum install epel-release mod24_ssl sendmail wget -y  ;
   touch /etc/sysconfig/network ;
   
   cp /etc/hosts ~/hosts.new ;
@@ -10,7 +10,8 @@
 
 ##### install nginx & php & mysql-client#####
 
-  yum -y install nginx;
+  yum -y remove httpd* ;
+  yum -y install nginx ;
   yum -y install php56-fpm  php56-gd php56-mysqlnd php56-soap php56-mbstring php56-ldap php56-mcrypt php56-xml php56-opcache ;
   yum -y install mysql56 ;
 
@@ -31,8 +32,8 @@
   sed -i '/;opcache.fast_shutdown=0/c\opcache.fast_shutdown=1' /etc/php.d/10-opcache.ini ;
 
 ##### install processmaker 3.2.2 #####
-  cd /tmp/ && wget https://artifacts.processmaker.net/official/processmaker-3.2.2+001.tar.gz ;
-  tar -C /opt -xzvf processmaker-3.2.2+001.tar.gz ;
+  cd /tmp/ && wget https://artifacts.processmaker.net/official/processmaker-3.2.3.tar.gz ;
+  tar -C /opt -xzvf processmaker-3.2.3.tar.gz ;
   cd /opt/processmaker/ ;
   chmod -R 770 shared workflow/public_html gulliver/js thirdparty/html2ps_pdf/cache ;
   cd /opt/processmaker/workflow/engine/ ;
@@ -40,7 +41,7 @@
   chown -R nginx:nginx /opt/processmaker ;
 
 ##### clean #####
-  rm -rf /tmp/processmaker-3.2.2+001.tar.gz ;
+  rm -rf /tmp/processmaker-3.2.3.tar.gz ;
   yum clean packages ;
   yum clean headers ;
   yum clean metadata ;
