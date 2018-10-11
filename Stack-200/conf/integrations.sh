@@ -40,7 +40,7 @@ if [[ -z "${PM_OCI}" ]];then
     echo "Oracle connection is not installed" ;
 else
     yum install -y which ;
-    if [ -x "$(which pecl)" ]; then
+    if [ -f /usr/lib64/php/5.5/modules/*oci8.so ]; then
 	    echo "Oracle connection is already installed" ;
 	else
         yum install -y php55-devel php55-pecl-apcu gcc libaio ;
