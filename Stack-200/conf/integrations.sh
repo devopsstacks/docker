@@ -39,7 +39,6 @@ fi
 if [[ -z "${PM_OCI}" ]];then
     echo "Oracle connection is not installed" ;
 else
-    yum install -y which ;
     if [ -f /usr/lib64/php/5.5/modules/*oci8.so ]; then
 	    echo "Oracle connection is already installed" ;
 	else
