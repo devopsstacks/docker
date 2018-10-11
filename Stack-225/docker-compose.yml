@@ -8,7 +8,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: PM-Testdb
-    container_name: pm220-db
+    container_name: pm225-db
 
   processmaker:
     depends_on:
@@ -26,7 +26,7 @@ services:
     depends_on:
       - mysql
     image: phpmyadmin/phpmyadmin
-    container_name: pm220-phpmyadmin
+    container_name: pm225-phpmyadmin
     environment:
      - PMA_ARBITRARY=1
     restart: always
