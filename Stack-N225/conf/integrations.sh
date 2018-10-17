@@ -56,7 +56,7 @@ else
     if [ -x "$(which pecl)" ]; then
 	    echo "Oracle connection is already installed" ;
 	else
-        yum install -y httpd24 php71-devel php71-pecl-apcu gcc libaio ;
+        yum install -y php71-devel php71-pecl-apcu gcc libaio php7-pear ;
         cd /tmp ;
         if [ "${PM_OCI}" == "10" ];then
             wget https://artifacts.processmaker.net/dbintegrations/oracle-10.2-basic.tar.gz ;
@@ -76,7 +76,7 @@ else
             rpm -Uvh /tmp/oracle-12.2-basic.tar.gz ;
             rpm -Uvh /tmp/oracle-12.2-devel.tar.gz ;
         fi
-        printf "\n" | pecl install oci8-2.0.12 ;
+        printf "\n" | pecl7 install oci8-2.1.8 ;
         echo "extension=oci8.so" >> /etc/php.ini ;
     fi
 fi
