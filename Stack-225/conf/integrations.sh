@@ -19,7 +19,20 @@ else
         echo "MSSQL connection is already installed" ;
     else
         if [ "${PM_MSSQL}" == "install" ];then
-            yum install -y freetds php71-mssql ;
+            curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo ;
+            
+            yum remove -y unixODBC* ;
+            yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-2.3.1-11.el7.x86_64.rpm ;
+            yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-devel-2.3.1-11.el7.x86_64.rpm ;
+            
+            yum install -y gcc-c++ gcc php71-devel ;
+            yum install -y php71-odbc ;
+            yum install -y php7-pear ;
+            ACCEPT_EULA=Y yum install -y msodbcsql ;
+            pecl7 install sqlsrv ;
+            pecl7 install pdo_sqlsrv ;
+            echo extension=pdo_sqlsrv.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/30-pdo_sqlsrv.ini ;
+            echo extension=sqlsrv.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/20-sqlsrv.ini ;
         fi
     fi
 fi
