@@ -1,0 +1,36 @@
+version: "2.1"
+
+services:
+  mysql:
+    image: mysql:5.6
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: PM-Testdb
+    container_name: pmN225-db
+
+  processmaker:
+    depends_on:
+      - mysql
+    image: devopsstacks/pm:n225
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    container_name: pmN225-app
+    environment:
+      PM_URL: http://url-of-your-processmaker
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: pmN225-phpmyadmin
+    environment:
+     - PMA_ARBITRARY=1
+    restart: always
+    ports:
+     - 8080:80
+    environment:
+      PMA_HOST: mysql
