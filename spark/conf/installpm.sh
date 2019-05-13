@@ -8,13 +8,14 @@
   sed -i "/127.0.0.1/c\127.0.0.1 localhost localhost.localdomain `hostname`" ~/hosts.new ;
   cp -f ~/hosts.new /etc/hosts ;
 
-##### install nginx & php & mysql-client #####
+##### install nginx & php #####
 
   yum -y remove httpd* ;
   yum -y install nginx ;
-  yum -y install php71-fpm  php71-gd php71-mysqlnd php71-soap php71-mbstring php71-ldap php71-mcrypt php71-xml php71-opcache ;
-  yum -y install mysql56 ;
-
+  yum -y install php72-fpm php72-gd php72-mysqlnd php72-soap php72-mbstring php72-ldap php72-mcrypt php72-xml php72-opcache php72-cli ;
+  yum -y install php72-curl php72-zip php72-json;
+  yum -y install mysql57 ;
+ 
 ## configure php.ini ##
   sed -i '/short_open_tag = Off/c\short_open_tag = On' /etc/php.ini ;
   sed -i '/post_max_size = 8M/c\post_max_size = 24M' /etc/php.ini ;
@@ -33,26 +34,48 @@
 ## composer ##
   curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
-## composer ##
-  yum -y install yum-utils ;
-  yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm ;
-  yum -y  install redis ;
+## Redis ##
+  yum -y install gcc make ;
+  wget http://download.redis.io/releases/redis-3.2.0.tar.gz ;
+  tar xzf redis-3.2.0.tar.gz ;
+  rm -f redis-3.2.0.tar.gz ;
+
+  cd redis-3.2.0 ;
+  make distclean ;
+  make ;
+
+  mkdir -p /etc/redis /var/lib/redis /var/redis/6379 ;
+  cp src/redis-server src/redis-cli /usr/local/bin ;
+  cp redis.conf /etc/redis/redis.conf ;
+
+  sed -i '/daemonize no/c\daemonize yes' /etc/redis/redis.conf ;
+  sed -i '/dir .\//c\dir \/var\/redis\/6379' /etc/redis/redis.conf ;
+
+  wget https://raw.githubusercontent.com/saxenap/install-redis-amazon-linux-centos/master/redis-server ;
+  mv redis-server /etc/init.d ;
+  chmod 755 /etc/init.d/redis-server ;
+
 
 ## NodeJS ##
   wget https://rpm.nodesource.com/setup_10.x ;
-  bash setup_10.x ;
-  yum -y install nodejs ;
+  sh setup_10.x ;
+  yum -y install nodejs ; 
 
-## Supervisor ##
+## supervisor ##
+  yum install python36-pip -y ;
+  easy_install-3.6 supervisor ;
+  mkdir /etc/supervisor ;
+  echo_supervisord_conf > /etc/supervisor/supervisord.conf ;
+  sed -i '/;\[include\]/c\\[include\]' /etc/supervisor/supervisord.conf ;
+  sed -i '/;files = relative\/directory\/\*.ini/c\files = \/etc\/supervisor\/processmaker\*' /etc/supervisor/supervisord.conf ;
   
-  yum -y install supervisor ;
+## docker ##
+  yum install -y docker ;
   
-
 ##### clean #####
   yum clean packages ;
   yum clean headers ;
   yum clean metadata ;
-  yum clean all
+  yum clean all ;
 
 ###############################################################################################################

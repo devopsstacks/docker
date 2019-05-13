@@ -2,23 +2,23 @@ version: "2.1"
 
 services:
   mysql:
-    image: mysql:5.6
+    image: mysql:5.7
     ports:
       - 3306:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: PM-Testdb
-    container_name: pmN225-db
+    container_name: pmSpark-db
 
   processmaker:
     depends_on:
       - mysql
-    image: devopsstacks/pm:n225
+    image: devopsstacks/pm:spark
     ports:
       - 80:80
-      - 443:443
+      - 6001:6001
     restart: always
-    container_name: pmN225-app
+    container_name: pmSpark-app
     environment:
       PM_URL: http://url-of-your-processmaker
 
@@ -26,7 +26,7 @@ services:
     depends_on:
       - mysql
     image: phpmyadmin/phpmyadmin
-    container_name: pmN225-phpmyadmin
+    container_name: pmSpark-phpmyadmin
     environment:
      - PMA_ARBITRARY=1
     restart: always

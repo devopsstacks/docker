@@ -1,10 +1,10 @@
 # Base Image
-FROM amazonlinux
+FROM amazonlinux:2017.09
 
 # Maintainer
 LABEL maintainer="devops@processmaker.com"
 
-LABEL processmaker-stack="pm4"
+LABEL processmaker-stack="pm4-spark"
 
 # Install processmaker 
 COPY ["conf/installpm.sh", "/tmp/"]
@@ -17,10 +17,10 @@ RUN  chmod 700 /tmp/installpm.sh && \
 COPY ["conf/php-fpm.conf", "/etc/php-fpm.d/processmaker.conf"]
 COPY ["conf/nginx.conf", "/etc/nginx/nginx.conf"]
 COPY ["conf/processmaker.conf", "/etc/nginx/conf.d/processmaker.conf"]
-COPY ["conf/processmaker-horizon.conf", "/etc/supervisord.d/processmaker-horizon.conf"]
-COPY ["conf/processmaker-echo-server.conf", "/etc/supervisord.d/processmaker-echo-server.conf"]
+COPY ["conf/processmaker-horizon.conf", "/etc/supervisor/processmaker-horizon.conf"]
+COPY ["conf/processmaker-echo-server.conf", "/etc/supervisor/processmaker-echo-server.conf"]
 
 
 # Docker entrypoint
-EXPOSE 80 443
+EXPOSE 80 6001
 ENTRYPOINT ["/usr/bin/servicespm.sh"]
