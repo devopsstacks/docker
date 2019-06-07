@@ -1,5 +1,5 @@
 # Base Image
-FROM node:9-stretch
+FROM node:8-stretch
 
 RUN apt-get update -y && apt-get -y install unzip && apt-get -y install software-properties-common
 
