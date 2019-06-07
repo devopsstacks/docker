@@ -10,5 +10,5 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
 # Install Dependets plugin pm
 RUN apt-get install -y phploc && apt-get install -y php-codesniffer && apt-get install -y phpmd && apt-get install -y pdepend && apt-get install -y phpunit && apt-get install -y phpdox
 # Install NodeJS
-RUN sudo apt-get install curl software-properties-common && curl -sL https://deb.nodesource.com/setup_8.x | sudo bash - && apt-get install -y nodejs 
+RUN apt-get install -y nodejs 
 ENTRYPOINT ["/bin/bash"]
