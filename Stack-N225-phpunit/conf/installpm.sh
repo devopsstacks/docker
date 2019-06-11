@@ -30,6 +30,17 @@
   sed -i '/;opcache.validate_timestamps=1/c\opcache.validate_timestamps=1' /etc/php.d/10-opcache.ini ;
   sed -i '/;opcache.fast_shutdown=0/c\opcache.fast_shutdown=1' /etc/php.d/10-opcache.ini ;
 
+## install mysql
+  yum install -y mysql56-server ;
+  service mysqld start ;
+  mysql -e "UPDATE mysql.user SET Password=PASSWORD('password') WHERE User='root';" ;
+  mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');" ; 
+  mysql -e "DELETE FROM mysql.user WHERE User='';" ;
+  mysql -e "FLUSH PRIVILEGES;" ;
+
+## install git
+ yum install -y git ;
+ 
 ##### clean #####
   yum clean packages ;
   yum clean headers ;

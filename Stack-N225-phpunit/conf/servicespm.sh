@@ -31,4 +31,5 @@ echo "
 sleep 3 ;
 service php-fpm restart ;
 service nginx stop ;
+service mysqld start ;
 nginx -g 'daemon off;' ;
