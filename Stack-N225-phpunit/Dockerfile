@@ -11,6 +11,7 @@ COPY ["conf/installpm.sh", "/tmp/"]
 COPY ["conf/integrations.sh", "/tmp/"]
 COPY ["conf/pmoptional.sh", "/tmp/"]
 COPY ["conf/servicespm.sh", "/usr/bin/"]
+COPY ["conf/pm_schema.sql", "/tmp/"]
 RUN  chmod 700 /tmp/installpm.sh && \
      chmod 700 /tmp/integrations.sh && \
      chmod 700 /tmp/pmoptional.sh && \

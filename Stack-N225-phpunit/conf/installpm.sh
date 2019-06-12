@@ -21,7 +21,7 @@
   sed -i '/upload_max_filesize = 2M/c\upload_max_filesize = 24M' /etc/php.ini ;
   sed -i '/;date.timezone =/c\date.timezone = America/New_York' /etc/php.ini ;
   sed -i '/expose_php = On/c\expose_php = Off' /etc/php.ini ;
-  sed -i '/memory_limit = 128M/c\memory_limit = 512M' /etc/php.ini ;
+  sed -i '/memory_limit = 128M/c\memory_limit = 1024M' /etc/php.ini ;
 
 ## install opcache ##
   sed -i '/opcache.max_accelerated_files=4000/c\opcache.max_accelerated_files=10000' /etc/php.d/10-opcache.ini ;
@@ -37,10 +37,25 @@
   mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');" ; 
   mysql -e "DELETE FROM mysql.user WHERE User='';" ;
   mysql -e "FLUSH PRIVILEGES;" ;
+  echo "[mysqld]
+max_allowed_packet=100M" >> /etc/my.cnf ;
 
 ## install git
  yum install -y git ;
  
+## install composer 
+ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer ;
+
+## install Xdebug
+ yum install -y php71-xdebug ;
+ echo "[xdebug]
+zend_extension=/usr/lib64/php/7.1/modules/xdebug.so
+xdebug.remote_enable=1
+xdebug.remote_handler=dbgp
+xdebug.remote_mode=req
+xdebug.remote_host=0.0.0.0
+xdebug.remote_port=9000" >> /etc/php.ini ;
+
 ##### clean #####
   yum clean packages ;
   yum clean headers ;
