@@ -2,23 +2,22 @@ version: "2.1"
 
 services:
   mysql:
-    image: mysql:5.6
+    image: mysql:5.7
     ports:
       - 3306:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: PM-Testdb
-    container_name: pm225-db
+    container_name: pm255-db
 
   processmaker:
     depends_on:
       - mysql
     image: devopsstacks/pm:225
-    ports:
       - 80:80
       - 443:443
     restart: always
-    container_name: pm225-app
+    container_name: pm255-app
     environment:
       PM_URL: artifacts.processmaker.net/generic/processmaker-3.3.0-build10.tar.gz
 
@@ -26,7 +25,7 @@ services:
     depends_on:
       - mysql
     image: phpmyadmin/phpmyadmin
-    container_name: pm225-phpmyadmin
+    container_name: pm255-phpmyadmin
     environment:
      - PMA_ARBITRARY=1
     restart: always

@@ -4,7 +4,7 @@ FROM amazonlinux:2017.09
 # Maintainer
 LABEL maintainer="devops@processmaker.com"
 
-LABEL processmaker-stack="225"
+LABEL processmaker-stack="255"
 
 # Install processmaker 
 COPY ["conf/installpm.sh", "/tmp/"]
