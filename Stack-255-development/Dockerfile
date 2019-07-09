@@ -19,7 +19,7 @@ RUN  chmod 700 /tmp/installpm.sh && \
      chmod 700 /tmp/integrations.sh && \
      chmod 700 /tmp/pmoptional.sh && \
      chmod 700 /usr/bin/servicespm.sh && \
-     /bin/sh /tmp/installpm.sh \
+     /bin/sh /tmp/installpm.sh && \
      /bin/sh /tmp/development.sh
      
 # Docker entrypoint
