@@ -11,12 +11,12 @@ curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ;
 curl -sSL https://get.rvm.io | bash -s stable ;
 usermod -a -G rvm `whoami` ;
-sleep 60 ;
-source /usr/local/rvm/bin/rvm ;
-rvm reload ;
-rvm requirements run ;
-rvm install 2.3 ;
-rvm use 2.3 --defau ;
+sleep 120 ;
+#source /usr/local/rvm/bin/rvm ;
+#rvm reload ;
+/usr/local/rvm/bin/rvm requirements run ;
+/usr/local/rvm/bin/rvm install 2.3 ;
+/usr/local/rvm/bin/rvm use 2.3 --defau ;
 gem install ftools ;
 gem install rake ;
 gem install colorize ;
