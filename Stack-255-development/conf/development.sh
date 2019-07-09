@@ -24,3 +24,4 @@ gem install json ;
 gem install closure-compiler ;
 gem install compass ;
 gem install rubyzip ;
+yum install aws-cli ;
