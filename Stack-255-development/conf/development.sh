@@ -13,7 +13,7 @@ curl -sSL https://get.rvm.io | bash -s stable ;
 usermod -a -G rvm `whoami` ;
 sleep 120 ;
 #source /usr/local/rvm/bin/rvm ;
-#rvm reload ;
+/usr/local/rvm/bin/rvm reload ;
 /usr/local/rvm/bin/rvm requirements run ;
 /usr/local/rvm/bin/rvm install 2.3 ;
 /usr/local/rvm/bin/rvm use 2.3 --defau ;
