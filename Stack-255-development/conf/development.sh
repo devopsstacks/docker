@@ -8,10 +8,9 @@ curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/
 yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel \ 
 libyaml-devel libffi-devel openssl-devel make \
 bzip2 autoconf automake libtool bison iconv-devel ;
-curl -sSL https://rvm.io/mpapis.asc | gpg2 --import - ;
-curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import - ;
-curl -L get.rvm.io | bash -s stab ;
-source /etc/profile.d/rvm.sh ;
+sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ;
+curl -sSL https://get.rvm.io | sudo bash -s stable ;
+source /usr/local/rvm/bin/rvm ;
 rvm reload  ;
 rvm requirements run ;
 rvm install 2.3 ;
