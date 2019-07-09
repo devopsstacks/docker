@@ -16,7 +16,7 @@ sleep 120 ;
 /usr/local/rvm/bin/rvm reload ;
 /usr/local/rvm/bin/rvm requirements run ;
 /usr/local/rvm/bin/rvm install 2.3 ;
-/usr/local/rvm/bin/rvm use 2.3 --defau ;
+/usr/local/rvm/bin/rvm use 2.3 --default ;
 gem install ftools ;
 gem install rake ;
 gem install colorize ;
