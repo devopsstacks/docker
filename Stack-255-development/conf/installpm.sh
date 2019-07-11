@@ -11,7 +11,7 @@
 ##### install Apache & php & mysql-client#####
   yum -y remove httpd* ;
   yum -y install httpd24 php71;
-  yum -y install php71-gd php71-mysqlnd php71-soap php71-mbstring php71-ldap php71-mcrypt php71-xml ;
+  yum -y install php71-gd php71-mysqlnd php71-soap php71-mbstring php71-ldap php71-mcrypt php71-xml php71-imap ;
   yum -y install mysql56 ;
 
 ##### configure php.ini #####

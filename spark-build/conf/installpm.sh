@@ -68,6 +68,11 @@
   echo_supervisord_conf > /etc/supervisor/supervisord.conf ;
   sed -i '/;\[include\]/c\\[include\]' /etc/supervisor/supervisord.conf ;
   sed -i '/;files = relative\/directory\/\*.ini/c\files = \/etc\/supervisor\/processmaker\*' /etc/supervisor/supervisord.conf ;
+
+## development tools ##
+  yum install -y jq ;
+  yum install -y git ;
+  yum install -y gcc-c++ ;
   
 ## docker ##
   yum install -y docker ;
