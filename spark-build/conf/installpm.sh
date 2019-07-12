@@ -73,6 +73,7 @@
   yum install -y jq ;
   yum install -y git ;
   yum install -y gcc-c++ ;
+  yum install -y aws-cli ;
   
 ## docker ##
   yum install -y docker ;
