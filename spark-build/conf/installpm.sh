@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##### install tools #####
-  yum clean all && yum update -y && yum install epel-release sendmail wget -y  ;
+  yum clean all && yum update -y && yum install epel-release sendmail wget unzip -y  ;
   touch /etc/sysconfig/network ;
   
   cp /etc/hosts ~/hosts.new ;
@@ -74,6 +74,20 @@
   yum install -y git ;
   yum install -y gcc-c++ ;
   yum install -y aws-cli ;
+
+## pdo_sqlsrv ##
+  curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo ;          
+  yum remove -y unixODBC* ;
+  yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-2.3.1-11.el7.x86_64.rpm ;
+  yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-devel-2.3.1-11.el7.x86_64.rpm ;
+  yum install -y gcc-c++ gcc php72-devel ;
+  yum install -y php72-odbc ;
+  yum install -y php7-pear ;
+  ACCEPT_EULA=Y yum install -y msodbcsql ;
+  pecl7 install sqlsrv ;
+  pecl7 install pdo_sqlsrv ;
+  echo extension=pdo_sqlsrv.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/30-pdo_sqlsrv.ini ;
+  echo extension=sqlsrv.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/20-sqlsrv.ini ;
   
 ## docker ##
   yum install -y docker ;
