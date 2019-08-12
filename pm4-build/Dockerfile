@@ -9,7 +9,7 @@ RUN sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jp
 RUN sudo docker-php-ext-install -j$(nproc) gd
 RUN sudo docker-php-ext-install -j$(nproc) pcntl
 RUN sudo docker-php-ext-install -j$(nproc) exif
-
+RUN sudo chmod 777 /opt
 RUN sudo curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && \
     sudo sh  -c 'curl https://packages.microsoft.com/config/debian/8/prod.list > /etc/apt/sources.list.d/mssql-release.list' && \
     sudo apt-get install -y locales && \
