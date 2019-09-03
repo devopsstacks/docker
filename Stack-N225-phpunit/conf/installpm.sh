@@ -49,7 +49,6 @@ max_allowed_packet=100M" >> /etc/my.cnf ;
 ## install Xdebug
  yum install -y php71-xdebug ;
  echo "[xdebug]
-zend_extension=/usr/lib64/php/7.1/modules/xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_handler=dbgp
 xdebug.remote_mode=req
