@@ -1,7 +1,8 @@
 # Base Image
 FROM debian:stretch-slim
 # Install Build Essentials
-RUN apt-get -y install jq && apt-get install -y php && apt-get install -y ant
+RUN sudo apt-get update -y
+RUN sudo apt-get install jq -y && sudo apt-get install php -y && sudo apt-get install ant -y
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 # Remove default node
