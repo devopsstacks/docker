@@ -1,5 +1,5 @@
 # Base Image
-FROM node:8-stretch
+FROM debian:stretch-slim
 
 RUN apt-get update -y && apt-get -y install unzip && apt-get -y install software-properties-common
 
@@ -9,7 +9,7 @@ RUN apt-get update -y && apt-get install build-essential -y && apt-get install f
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 # Remove default node
 RUN apt-get remove node* -y
-# Install note with NVM
+# Install node with NVM
 RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash && source ~/.profile && nvm install v8.9.4
 # Install Dependets plugin pm
 RUN apt-get install -y phploc && apt-get install -y php-codesniffer && apt-get install -y phpmd && apt-get install -y pdepend && apt-get install -y phpunit && apt-get install -y phpdox && npm install -g gulp
