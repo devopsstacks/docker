@@ -12,6 +12,7 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
 RUN apt-get install -y phploc && apt-get install -y php-codesniffer && apt-get install -y phpmd && apt-get install -y pdepend && apt-get install -y phpunit && apt-get install -y phpdox
 RUN php -v
 # Install node Versions
-RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash && source ~/.profile && nvm install v8.9.4 && nvm use v8.9.4
+#RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash && source ~/.profile && nvm install v8.9.4 && nvm use v8.9.4
+RUN curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh && bash install_nvm.sh && source ~/.profile && nvm install 8.9.4 && nvm use 8.9.4
 RUN node -v
 ENTRYPOINT ["/bin/bash"]
