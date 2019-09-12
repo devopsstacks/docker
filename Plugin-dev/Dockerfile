@@ -1,4 +1,4 @@
-FROM debian-stretch
+FROM debian:stretch
 
 RUN cat /etc/os-release
 RUN apt-get update -y
