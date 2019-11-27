@@ -22,8 +22,8 @@ else
             curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo ;
             
             yum remove -y unixODBC* ;
-            yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-2.3.1-11.el7.x86_64.rpm ;
-            yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-devel-2.3.1-11.el7.x86_64.rpm ;
+            yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-2.3.1-14.el7.x86_64.rpm ;
+            yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-devel-2.3.1-14.el7.x86_64.rpm ;
             
             yum install -y gcc-c++ gcc php71-devel ;
             yum install -y php71-odbc ;
