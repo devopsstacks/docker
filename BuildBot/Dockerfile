@@ -2,7 +2,7 @@
 FROM node:8.9-stretch
 
 RUN cat /etc/os-release
-RUN apt install python-software-properties && add-apt-repository ppa:ondrej/php
+RUN apt install python-software-properties -y && add-apt-repository ppa:ondrej/php -y
 RUN node -v
 RUN apt-get update -y && apt-get -y install unzip && apt-get -y install software-properties-common
 # Install Build Essentials
