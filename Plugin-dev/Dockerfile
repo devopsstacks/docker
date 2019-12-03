@@ -11,6 +11,6 @@ RUN apt-get update -y
 RUN apt-get install php7.1 -y
 RUN apt-get install -y phploc && apt-get install -y php-codesniffer && apt-get install -y phpmd && apt-get install -y pdepend && apt-get install -y phpunit && apt-get install -y phpdox 
 RUN npm install -g gulp
-RUN apt-get install -y ph71-ploc
+RUN apt-get install -y ph7.1-ploc
 RUN echo '-----------' php -v echo '----------------'
 ENTRYPOINT ["/bin/bash"]
