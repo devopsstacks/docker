@@ -10,6 +10,7 @@ yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-dev
 yum install -y ruby-devel ;
 yum install -y ruby22-devel ;
 yum install -y ruby23-devel ;
+yum install -y ruby24-devel ;
 gem install ftools ;
 gem install rake ;
 gem install colorize ;
