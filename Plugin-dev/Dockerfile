@@ -9,5 +9,8 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 RUN echo "deb https://packages.sury.org/php/ jessie main" | tee /etc/apt/sources.list.d/php.list
 RUN apt-get update -y
 RUN apt-get install php7.1 -y
+RUN apt-get install -y phploc && apt-get install -y php-codesniffer && apt-get install -y phpmd && apt-get install -y pdepend && apt-get install -y phpunit && apt-get install -y phpdox 
+RUN npm install -g gulp
+RUN apt-get install -y ph71-ploc
 RUN echo '-----------' php -v echo '----------------'
 ENTRYPOINT ["/bin/bash"]
