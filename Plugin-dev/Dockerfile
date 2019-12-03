@@ -5,7 +5,7 @@ RUN cat /etc/os-release
 RUN echo '*************' && node -v && echo '*******************'
 RUN apt-get update -y && apt-get -y install unzip && apt-get -y install software-properties-common
 RUN apt-get install -y ca-certificates apt-transport-https
-RUN wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 RUN echo "deb https://packages.sury.org/php/ jessie main" | tee /etc/apt/sources.list.d/php.list
 RUN apt-get update -y
 RUN apt-get install php7.1 -y
