@@ -9,6 +9,7 @@ RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 RUN echo "deb https://packages.sury.org/php/ jessie main" | tee /etc/apt/sources.list.d/php.list
 RUN apt-get update -y
 RUN apt-get install php7.1 -y
+RUN apt-get install php7.1-mbstring
 # Install Build Essentials
 #RUN apt-get update
 RUN apt-get install build-essential -y && apt-get install file -y && apt-get install apt-utils -y && apt-get -y install jq && apt-get -y install jq awscli && apt-get install -y php && apt-get install -y ant
