@@ -14,7 +14,6 @@ then
 else
     /bin/sh /tmp/pmoptional.sh ;
 fi
-/bin/sh /tmp/integrations.sh ;
 
 echo "
        ░░░░░░░
