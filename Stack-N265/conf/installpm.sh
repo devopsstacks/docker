@@ -12,7 +12,12 @@
 
   yum -y remove httpd* ;
   yum -y install nginx ;
-  yum -y install php73-fpm  php73-gd php73-mysqlnd php73-soap php73-mbstring php73-ldap php73-mcrypt php73-xml php73-opcache php73-imap ;
+  yum -y install php73-cli php73-fpm  php73-gd php73-mysqlnd php73-soap php73-mbstring php73-ldap php73-mcrypt php73-xml php73-opcache php73-imap php73-devel ;
+  yum install -y gcc make autoconf ;
+  yum install -y libmcrypt libmcrypt-devel ;
+  yum install -y php7-pear ;
+  printf "\n" | pecl7 install --nodeps mcrypt-snapshot ;
+  echo extension=/usr/lib64/php/7.3/modules/mcrypt.so >> /etc/php.ini ;
   yum -y install mysql57 ;
 
 ## configure php.ini ##
@@ -37,7 +42,7 @@
   echo_supervisord_conf > /etc/supervisor/supervisord.conf ;
   sed -i '/;\[include\]/c\\[include\]' /etc/supervisor/supervisord.conf ;
   sed -i '/;files = relative\/directory\/\*.ini/c\files = \/etc\/supervisor\/processmaker\*' /etc/supervisor/supervisord.conf ;
-  
+
 ##### clean #####
   yum clean packages ;
   yum clean headers ;

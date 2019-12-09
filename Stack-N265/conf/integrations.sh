@@ -7,7 +7,7 @@ else
         echo "PGSQL connection is already installed" ;
     else
         if [ "${PM_PGSQL}" == "install" ];then
-            yum install -y php71-pgsql ;
+            yum install -y php73-pgsql ;
         fi
     fi
 fi
@@ -25,8 +25,8 @@ else
             yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-2.3.1-14.el7.x86_64.rpm ;
             yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/unixODBC-devel-2.3.1-14.el7.x86_64.rpm ;
             
-            yum install -y gcc-c++ gcc php71-devel ;
-            yum install -y php71-odbc ;
+            yum install -y gcc-c++ gcc php73-devel ;
+            yum install -y php73-odbc ;
             yum install -y php7-pear ;
             ACCEPT_EULA=Y yum install -y msodbcsql ;
             pecl7 install sqlsrv ;
@@ -44,7 +44,7 @@ else
         echo "ODBC connection is already installed" ;
     else
         if [ "${PM_ODBC}" == "install" ];then
-            yum install -y unixODBC unixODBC-devel php71-odbc ;
+            yum install -y unixODBC unixODBC-devel php73-odbc ;
         fi
     fi
 fi
@@ -56,7 +56,7 @@ else
     if [ -x "$(which pecl)" ]; then
 	    echo "Oracle connection is already installed" ;
 	else
-        yum install -y php71-devel php71-pecl-apcu gcc libaio php7-pear ;
+        yum install -y php73-devel php73-pecl-apcu gcc libaio php7-pear ;
         cd /tmp ;
         if [ "${PM_OCI}" == "10" ];then
             wget https://artifacts.processmaker.net/dbintegrations/oracle-10.2-basic.tar.gz ;
