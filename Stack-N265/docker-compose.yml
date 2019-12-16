@@ -8,17 +8,17 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: PM-Testdb
-    container_name: pmN255-db
+    container_name: pmN265-db
 
   processmaker:
     depends_on:
       - mysql
-    image: devopsstacks/pm:n255
+    image: devopsstacks/pm:n265
     ports:
       - 80:80
       - 443:443
     restart: always
-    container_name: pmN255-app
+    container_name: pmN265-app
     environment:
       PM_URL: http://url-of-your-processmaker
 
@@ -26,7 +26,7 @@ services:
     depends_on:
       - mysql
     image: phpmyadmin/phpmyadmin
-    container_name: pmN255-phpmyadmin
+    container_name: pmN265-phpmyadmin
     environment:
      - PMA_ARBITRARY=1
     restart: always
