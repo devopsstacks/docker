@@ -38,7 +38,8 @@
   mysql -e "DELETE FROM mysql.user WHERE User='';" ;
   mysql -e "FLUSH PRIVILEGES;" ;
   echo "[mysqld]
-max_allowed_packet=100M" >> /etc/my.cnf ;
+  max_allowed_packet=100M" >> /etc/my.cnf ;
+  echo 'sql_mode= ""' >> /etc/my.cnf ;
 
 ## install git
  yum install -y git ;
