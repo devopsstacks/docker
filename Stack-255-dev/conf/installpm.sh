@@ -30,6 +30,12 @@
   sed -i 's@#LoadModule filter_module modules/mod_filter.so@LoadModule filter_module modules/mod_filter.so@' /etc/httpd/conf/httpd.conf ;
   echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf ;
 
+## NodeJS ##
+  wget https://rpm.nodesource.com/setup_12.x ;
+  sh setup_12.x ;
+  yum -y install nodejs ; 
+  npm install -g @vue/cli ;
+
 ##### clean #####
   yum clean packages ;
   yum clean headers ;
