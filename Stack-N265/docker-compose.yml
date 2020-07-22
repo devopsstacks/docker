@@ -9,6 +9,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: PM-Testdb
     container_name: pmN265-db
+    command: 
+      --optimizer-switch="derived_merge=off"
+      --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
 
   processmaker:
     depends_on:
