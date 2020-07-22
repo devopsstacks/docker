@@ -9,6 +9,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: PM-Testdb
     container_name: pmN255-db
+    command: 
+      --optimizer-switch="derived_merge=off"
+      --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
 
   processmaker:
     depends_on:
@@ -27,8 +30,6 @@ services:
       - mysql
     image: phpmyadmin/phpmyadmin
     container_name: pmN255-phpmyadmin
-    environment:
-     - PMA_ARBITRARY=1
     restart: always
     ports:
      - 8080:80
