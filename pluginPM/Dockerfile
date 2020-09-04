@@ -7,7 +7,8 @@ RUN node -v
 RUN yum update -y && yum -y install unzip
 # Install Build Essentials
 #RUN apt-get update
-RUN yum install -y build-essential && yum install -y file && yum install -y jq && yum install -y awscli && yum install -y ant
+RUN yum install -y make glibc-devel gcc patch
+RUN yum install -y file && yum install -y jq && yum install -y awscli && yum install -y ant
 RUN echo '**********************************************'
 RUN yum install -y php70-gd
 RUN yum install -y php72-gd
