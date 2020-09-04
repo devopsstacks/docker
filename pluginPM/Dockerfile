@@ -1,13 +1,17 @@
 # Base Image
 FROM amazonlinux:2017.09
-RUN cat /etc/os-release
-RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
-RUN yum install -y nodejs
-RUN node -v
-RUN yum update -y && yum -y install unzip
+#RUN cat /etc/os-release
+#RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+#RUN yum install -y nodejs
+#RUN node -v
+#RUN yum update -y && yum -y install unzip
 # Install Build Essentials
 #RUN apt-get update
-RUN yum install -y make glibc-devel gcc patch
+#RUN yum install -y make glibc-devel gcc patch
+RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+RUN unzip awscli-bundle.zip
+RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+RUN /usr/local/bin/python3.7 awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 RUN yum install -y file && yum install -y jq && yum install -y awscli && yum install -y ant
 RUN echo '**********************************************'
 RUN yum install -y php70-gd
