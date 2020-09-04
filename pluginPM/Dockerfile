@@ -4,7 +4,7 @@ RUN cat /etc/os-release
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum install -y nodejs
 RUN node -v
-RUN apt-get update -y && apt-get -y install unzip && apt-get -y install software-properties-common
+RUN yum update -y && yum -y install unzip && yum -y install software-properties-common
 RUN yum install -y php70-gd
 RUN yum install -y php72-gd
 RUN yum install -y php71-gd
