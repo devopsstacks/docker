@@ -1,5 +1,5 @@
 # Base Image
-FROM node:8.9-stretch
+FROM node:14.9.0-stretch
 
 RUN cat /etc/os-release
 RUN node -v
