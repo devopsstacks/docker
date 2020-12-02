@@ -1,5 +1,5 @@
 # Base Image
-FROM circleci/php:7.4-fpm-node-browsers
+FROM circleci/php:7.2.8-fpm-node-browsers
 
 RUN sudo apt-get update && sudo apt install -y libpng-dev libzip-dev default-libmysqlclient-dev curl apt-transport-https
 RUN sudo docker-php-ext-install gd zip pdo_mysql mysqli
