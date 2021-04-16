@@ -2,26 +2,24 @@ version: "2.1"
 
 services:
   mysql:
-    image: mysql:5.7
+    image: mysql:8
     ports:
       - 3306:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: PM-Testdb
-    container_name: pmN265-db
+    container_name: pmN275-db
     command: 
-      --optimizer-switch="derived_merge=off"
-      --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
-
+      --default-authentication-plugin=mysql_native_password
   processmaker:
     depends_on:
       - mysql
-    image: devopsstacks/pm:n265
+    image: devopsstacks/pm:n275
     ports:
       - 80:80
       - 443:443
     restart: always
-    container_name: pmN265-app
+    container_name: pmN275-app
     environment:
       PM_URL: http://url-of-your-processmaker
 
@@ -29,7 +27,7 @@ services:
     depends_on:
       - mysql
     image: phpmyadmin/phpmyadmin
-    container_name: pmN265-phpmyadmin
+    container_name: pmN275-phpmyadmin
     restart: always
     ports:
      - 8080:80

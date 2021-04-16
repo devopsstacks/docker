@@ -14,11 +14,11 @@ fi
 echo "
        ░░░░░░░
     ░░░░░░░░░░░░░
-   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK N265 -> ( amazonlinux:2017.09 ; NGINX-1.12 ; PHP-7.3 )
+   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK N275 -> ( amazonlinux:2017.09 ; NGINX-1.12 ; PHP-7.3 )
   ░░░░  ░░░░░   ░░░
-  ░░░  ░░░░░░░  ░░░░   - This ProcessMaker Stack uses MySql 5.7
-  ░░░  ░░░░░░   ░░░    - The following command runs mysql57 in Docker:
-   ░░  ░░     ░░░░     -> docker run --name pm-db56 -e MYSQL_ROOT_PASSWORD=PM-Testdb -p 3306:3306 -d mysql:5.7
+  ░░░  ░░░░░░░  ░░░░   - This ProcessMaker Stack uses MySql 8
+  ░░░  ░░░░░░   ░░░    - The following command runs mysql8 in Docker:
+   ░░  ░░     ░░░░     -> docker run --name pm-db8 -e MYSQL_ROOT_PASSWORD=PM-Testdb -p 3306:3306 -d mysql:8 mysqld --default-authentication-plugin=mysql_native_password
     ░  ░░░░░░░░░       
        ░░░░░░░         For more information see https://www.processmaker.com
                                                 http://wiki.processmaker.com/3.2/Supported_Stacks
