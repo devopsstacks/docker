@@ -18,7 +18,7 @@ echo "
   ░░░░  ░░░░░   ░░░
   ░░░  ░░░░░░░  ░░░░   - This ProcessMaker Stack uses MySql 8
   ░░░  ░░░░░░   ░░░    - The following command runs mysql8 in Docker:
-   ░░  ░░     ░░░░     -> docker run --name pm-db8 -e MYSQL_ROOT_PASSWORD=PM-Testdb -p 3306:3306 -d mysql:8 mysqld --default-authentication-plugin='mysql_native_password' --optimizer-switch='derived_merge=off' --sql-mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+   ░░  ░░     ░░░░     -> docker run --name pm-db8 -e MYSQL_ROOT_PASSWORD=PM-Testdb -p 3306:3306 -d mysql:8 mysqld --default-authentication-plugin='mysql_native_password' --optimizer-switch='derived_merge=off' --sql-mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
     ░  ░░░░░░░░░       
        ░░░░░░░         For more information see https://www.processmaker.com
                                                 http://wiki.processmaker.com/3.5/Supported_Stacks

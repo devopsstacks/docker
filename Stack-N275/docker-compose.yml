@@ -12,7 +12,7 @@ services:
     command: 
       --default-authentication-plugin="mysql_native_password"
       --optimizer-switch="derived_merge=off"
-      --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+      --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
       
   processmaker:
     depends_on:
@@ -26,7 +26,7 @@ services:
     restart: always
     container_name: pmN275-app
     environment:
-      PM_URL: http://url-of-your-processmaker
+      PM_URL: https://artifacts.processmaker.net/generic/processmaker-3.7.0-5411.tar.gz
 
   phpmyadmin:
     depends_on:
