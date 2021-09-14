@@ -25,7 +25,12 @@ echo "
 	 " ; 
 sleep 3 ;
 pkill php-fpm ;
+echo 1;
 php-fpm 
+echo 2;
 if [ -d "/opt/processmaker/workflow/engine" ] ; then /usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl reload ; fi
-pkill nginx ;
+echo 3;
+if [ -f "/var/run/nginx.pid" ] ; then pkill nginx; fi
+echo 4;
+/bin/bash
 nginx -g 'daemon off;' ;
