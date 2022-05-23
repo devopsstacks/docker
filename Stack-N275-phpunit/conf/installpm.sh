@@ -3,7 +3,7 @@
 ##### install tools #####
   yum clean all && yum update -y && yum install mod_ssl sendmail wget -y  ;
   yum install -y /usr/bin/systemctl; systemctl --version ;
-  yum install unzip -y ;
+  yum install unzip -y
 
 ##### install nginx & php & mysql-client #####
 
@@ -18,7 +18,7 @@
   yum-config-manager --enable remi-php74
   yum -y install php74-php-cli php74-php-fpm  php74-php-gd php74-php-mysqlnd php74-php-soap php74-php-mbstring php74-php-ldap php74-php-mcrypt php74-php-xml php74-php-opcache php74-php-imap php74-php-devel ;
   yum -y install php74-php-pear php74-php-pgsql php74-php-odbc php74-php-pecl-apcu php74-php-zip ;
-  mv /etc/yum.repos.d/amzn2-core.repo /etc/
+  mv /etc/yum.repos.d/amzn2-core.repo /etc/ ;
   yum -y install php-cli php-fpm  php-gd php-mysqlnd php-soap php-mbstring php-ldap php-mcrypt php-xml php-opcache php-imap php-devel ;
   yum -y install php-pear php-pgsql php-odbc php-pecl-apcu php-zip ;
   mv /etc/amzn2-core.repo /etc/yum.repos.d/
@@ -88,6 +88,21 @@ yum install -y systemtap-sdt-devel ;
 export PHP_DTRACE=yes ;
 printf "\n" | pecl install oci8-2.2.0 ;
 echo "extension=oci8.so" >> /etc/php.ini ;
+
+#### extras ####
+
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+yum update -y
+yum install -y mysql-community-client
+yum install -y git
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer ;
+yum install -y php-pecl-xdebug
+ echo "[xdebug]
+xdebug.remote_enable=1
+xdebug.remote_handler=dbgp
+xdebug.remote_mode=req
+xdebug.remote_host=0.0.0.0
+xdebug.remote_port=9000" >> /etc/php.ini
 
 ##### clean #####
   yum clean packages ;

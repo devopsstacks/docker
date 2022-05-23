@@ -32,4 +32,5 @@ if [ -d "/opt/processmaker/workflow/engine" ] ; then /usr/bin/supervisord -c /et
 echo 3;
 if [ -f "/var/run/nginx.pid" ] ; then pkill nginx; fi
 echo 4;
+/bin/bash
 nginx -g 'daemon off;' ;

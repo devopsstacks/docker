@@ -14,22 +14,22 @@ fi
 echo "
        ░░░░░░░
     ░░░░░░░░░░░░░
-   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK N275 -> ( amazonlinux:2017.09 ; NGINX-1.12 ; PHP-7.4 )
+   ░░░░       ░░░░     WELCOME TO PROCESSMAKER STACK N285 -> ( amazonlinux ; NGINX ; PHP-8.1 )
   ░░░░  ░░░░░   ░░░
   ░░░  ░░░░░░░  ░░░░   - This ProcessMaker Stack uses MySql 8
   ░░░  ░░░░░░   ░░░    - The following command runs mysql8 in Docker:
    ░░  ░░     ░░░░     -> docker run --name pm-db8 -e MYSQL_ROOT_PASSWORD=PM-Testdb -p 3306:3306 -d mysql:8 mysqld --default-authentication-plugin='mysql_native_password' --optimizer-switch='derived_merge=off' --sql-mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
     ░  ░░░░░░░░░       
        ░░░░░░░         For more information see https://www.processmaker.com
-                                                http://wiki.processmaker.com/3.5/Supported_Stacks
+                                                http://wiki.processmaker.com/3.7/Supported_Stacks
 	 " ; 
 sleep 3 ;
 pkill php-fpm ;
-echo 1;
+echo "step 1";
 php-fpm 
-echo 2;
+echo "step 2";
 if [ -d "/opt/processmaker/workflow/engine" ] ; then /usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl reload ; fi
-echo 3;
+echo "step 3";
 if [ -f "/var/run/nginx.pid" ] ; then pkill nginx; fi
-echo 4;
+echo "step 4";
 nginx -g 'daemon off;' ;

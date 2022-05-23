@@ -1,0 +1,40 @@
+version: "2.1"
+
+services:
+  mysql:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: PM-Testdb
+    container_name: pmN285-db
+    command: 
+      --default-authentication-plugin="mysql_native_password"
+      --optimizer-switch="derived_merge=off"
+      --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+      
+  processmaker:
+    depends_on:
+      - mysql
+    image: devopsstacks/pm:n285
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /opt:/opt
+    restart: always
+    container_name: pmN285-app
+    environment:
+      PM_URL: https://PM-URL
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: pmN285-phpmyadmin
+    restart: always
+    ports:
+     - 8080:80
+    environment:
+      PMA_HOST: mysql

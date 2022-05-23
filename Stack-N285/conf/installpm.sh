@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ##### install tools #####
-  yum clean all && yum update -y && yum install mod_ssl sendmail wget -y  ;
   yum install -y /usr/bin/systemctl; systemctl --version ;
+  yum clean all && yum update -y && yum install mod_ssl sendmail wget -y  ;
   yum install unzip -y ;
 
 ##### install nginx & php & mysql-client #####
@@ -14,12 +14,13 @@
   wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   wget https://rpms.remirepo.net/enterprise/remi-release-7.rpm
   rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
+  
   yum install yum-utils -y
-  yum-config-manager --enable remi-php74
-  yum -y install php74-php-cli php74-php-fpm  php74-php-gd php74-php-mysqlnd php74-php-soap php74-php-mbstring php74-php-ldap php74-php-mcrypt php74-php-xml php74-php-opcache php74-php-imap php74-php-devel ;
-  yum -y install php74-php-pear php74-php-pgsql php74-php-odbc php74-php-pecl-apcu php74-php-zip ;
+  yum-config-manager --enable remi-php81
+  yum -y install php81-php-cli php81-php-fpm  php81-php-gd php81-php-mysqlnd php81-php-soap php81-php-mbstring php81-php-ldap php81-php-xml php81-php-opcache php81-php-imap php81-php-devel ;
+  yum -y install php81-php-pear php81-php-pgsql php81-php-odbc php81-php-pecl-apcu php81-php-zip ;
   mv /etc/yum.repos.d/amzn2-core.repo /etc/
-  yum -y install php-cli php-fpm  php-gd php-mysqlnd php-soap php-mbstring php-ldap php-mcrypt php-xml php-opcache php-imap php-devel ;
+  yum -y install php-cli php-fpm  php-gd php-mysqlnd php-soap php-mbstring php-ldap php-xml php-opcache php-imap php-devel ;
   yum -y install php-pear php-pgsql php-odbc php-pecl-apcu php-zip ;
   mv /etc/amzn2-core.repo /etc/yum.repos.d/
   
@@ -86,7 +87,7 @@ rpm -Uvh /tmp/oracle-12.2-basic.tar.gz ;
 rpm -Uvh /tmp/oracle-12.2-devel.tar.gz ;
 yum install -y systemtap-sdt-devel ;
 export PHP_DTRACE=yes ;
-printf "\n" | pecl install oci8-2.2.0 ;
+printf "\n" | pecl install oci8 ;
 echo "extension=oci8.so" >> /etc/php.ini ;
 
 ##### clean #####
