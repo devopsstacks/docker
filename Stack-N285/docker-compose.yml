@@ -1,7 +1,7 @@
 version: "2.1"
 
 services:
-  db_mysql:
+  dbcool:
     image: mysql:8
     ports:
       - 3306:3306
@@ -16,7 +16,7 @@ services:
       
   processmaker:
     depends_on:
-      - db_mysql
+      - dbcool
     image: devopsstacks/pm:n285
     ports:
       - 80:80
@@ -30,11 +30,11 @@ services:
 
   phpmyadmin:
     depends_on:
-      - db_mysql
+      - dbcool
     image: phpmyadmin/phpmyadmin
     container_name: pmN285-phpmyadmin
     restart: always
     ports:
      - 8080:80
     environment:
-      PMA_HOST: db_mysql
+      PMA_HOST: dbcool
